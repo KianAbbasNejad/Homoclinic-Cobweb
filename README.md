@@ -1,4 +1,4 @@
-# Cobweb-Homoclinic-Bifurcation
+# Homoclinic Tangency in a Heterogeneous Cobweb Model
 
 This script calculates the unstable manifold for a (discrete time) cobweb model with heterogenous expectations as described by Hommes (2013, Ch. 5) which for specific parameter values demonstrates a homoclinic bifurcation. 
 
