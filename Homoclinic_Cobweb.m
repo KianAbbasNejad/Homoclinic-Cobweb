@@ -33,7 +33,7 @@ s = 1.35;
 p(1)=2;
 n1(1)=0.5;
 n2(1)=0.5;
-pstar = a/(d+s); % RE price
+pre = a/(d+s); % RE price
 
 % Formulae 
 fu1= @(T,P,H1) s*P(T)*H1(T)-(s/2)*(H1(T)).^2-c1; 
@@ -43,7 +43,7 @@ fn2 = @(T,U1,U2,Beta,N2) (1-delta)*exp(Beta*U2(T))/(exp(Beta*U1(T))+exp(Beta*U2(
 fp = @(T,N1,N2,H1,H2) (a-N1(T-1)*s*H1(T)-N2(T-1)*s*H2(T))./d;
 
 % specific types
-fh1 = @(P,T) pstar + beta1*(P(T-1)-pstar);
+fh1 = @(P,T) pre + beta1*(P(T-1)-pre);
 fh2 = @(P,T) P(T-1); 
 
 
@@ -60,7 +60,7 @@ end
 
 %Attractor
 fig1=figure(1);
-x = p - pstar;
+x = p - pre;
 scatter(x(trans:end),n1(trans:end),0.7,'k')
 fig1.Name='Attractor';
 title('strange attractor for $\beta=3$','FontSize',14,'interpreter','latex');
@@ -69,8 +69,7 @@ xlabel('$x_t$','FontSize',16,'interpreter','latex');
 
 
 %% Unstable Manifold
-
-tmax = 10; % number of iterations
+tmax = 13; % number of iterations
 tmax = tmax+1;
 len = 10000; %length of initial vector
 dx = 0.001; % perturbation size
@@ -89,7 +88,7 @@ n1ss = (tanh(-beta*c1/2)+1)/2;
 %Initial vector
 pvec = zeros(len,tmax);
 n1vec = zeros(len,tmax);
-pvec(:,1) = linspace(pstar+dx,pstar-dx,len);
+pvec(:,1) = linspace(pre+dx,pre-dx,len);
 n1vec(:,1)= linspace(n1ss,n1ss,len);
 
 % ODE System 
@@ -116,9 +115,13 @@ fig2.Name='Manifold';
 title('$\beta=3$: transversal homoclinic self-intersections','FontSize',14,'interpreter','latex');
 ylabel('$n_{1,t}$','FontSize',16,'interpreter','latex');
 xlabel('$x_t$','FontSize',16,'interpreter','latex');
+
+% plot deviation from re price
+pvec = pvec - ones(len,tmax).*pre;
 for i=1:tmax
     scatter(pvec(:,i),n1vec(:,i),1,'k')
 end
+
 
 
 
