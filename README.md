@@ -1,6 +1,6 @@
 # Cobweb-Homoclinic-Bifurcation
 
-This script calculates the unstable manifold for a cobweb model with heterogenous expectations as described by Hommes (2013, Ch. 5) which for specific parameter values demonstrates a homoclinic bifurcation. 
+This script calculates the unstable manifold for a (discrete time) cobweb model with heterogenous expectations as described by Hommes (2013, Ch. 5) which for specific parameter values demonstrates a homoclinic bifurcation. 
 
 
 ![homoclinic-5](https://user-images.githubusercontent.com/45733935/81490823-0035fd80-9287-11ea-80dd-66168b76b012.png)
